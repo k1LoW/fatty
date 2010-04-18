@@ -7,12 +7,48 @@
     color: #333333;
  }
 
+#container { 
+    margin: 0px;
+ }
+
+#header { 
+    position: absolute;
+    top:10px;
+    z-index: -1;
+ }
+
+#content {
+    margin: 50px auto;
+    width: 920px;
+ }
+
+h1 {
+    margin-left: 10px;
+    line-height: 1em;
+    font-size: 60px;
+    color: #DDDDDD;    
+ }
+
+h1 a:hover {
+    color: #FF8929;
+    line-height: 1em;
+    font-size: 60px;
+    text-decoration: underline;
+ }
+
+h1 a:visited {
+    color: #DDDDDD;
+    line-height: 1em;
+    font-size: 60px;
+ }
+
 h2 {
     font-size: 2em;
+    margin-top: 10px;
     margin-bottom: 5px;
  }
 
-h2 span { 
+h2 span {
     font-size: 0.8em;
  }
 
@@ -28,11 +64,6 @@ a:hover {
 
 a:visited {
     color: #FF8929;
- }
-
-#content {
-    margin: 0 auto;
-    width: 920px;
  }
 
 .commit {
@@ -53,17 +84,17 @@ a:visited {
  }
 
 .comment {
-    font-size: 90%;    
+    font-size: 90%;
     color: #666666;
     height: 4em;
     overflow: hidden;
  }
 
-.author { 
+.author {
     margin: 5px;
  }
 
-.author span { 
+.author span {
     font-weight: bold;
     margin-right: 5px;
  }
@@ -73,7 +104,7 @@ a:visited {
     width: 40%;
  }
 
-.hash div { 
+.hash div {
     padding: 0px 5px;
     color: #666666;
     border-left: 1px solid #FF8929;
@@ -83,7 +114,7 @@ a:visited {
     font-size: 0.85em;
  }
 
-#files { 
+#files {
     clear: both;
     margin: 10px 0px;
     padding: 5px;
@@ -91,12 +122,12 @@ a:visited {
     border-bottom: 1px solid #AAAAAA;
  }
 
-#files ul { 
+#files ul {
     margin: 0px;
     list-style-type: none;
  }
 
-#diffs { 
+#diffs {
 
  }
 
@@ -106,12 +137,12 @@ div.diff {
     border: 1px solid #AAAAAA;
  }
 
-div.title { 
+div.title {
     padding: 5px 10px;
     border-bottom: 1px solid #AAAAAA;
  }
 
-#diffs table { 
+#diffs table {
     margin-top: 5px;
     width: 100%;
     border-collapse: collapse;
@@ -119,16 +150,16 @@ div.title {
     background-color: #EDEDED;
  }
 
-tr.gray { 
+tr.gray {
     color: #666666;
     background-color: #DADAF5;
  }
 
-tr.green { 
+tr.green {
     background-color: #DDFFDD;
  }
 
-tr.red { 
+tr.red {
     background-color: #FFDDDD;
  }
 
