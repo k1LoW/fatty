@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4em;
+    font-size: 13.34px;
+    font-family: Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+    color: #333333;
+ }
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 5px;
+ }
+
+h2 span { 
+    font-size: 0.8em;
+ }
+
+a {
+    color: #FF8929;
+    text-decoration: none;
+ }
+
+a:hover {
+    color: #FF8929;
+    text-decoration: underline;
+ }
+
+a:visited {
+    color: #FF8929;
+ }
+
+#content {
+    margin: 0 auto;
+    width: 920px;
+ }
+
+.commit {
+    clear: both;
+    overflow: hidden;
+    padding: 5px;
+    border: 1px solid #FF8929;
+    background-color: #FFD3B0;
+    background-image: url(../img/back.png);
+    background-position: bottom;
+    background-repeat: repeat-x;
+    height: 80px;
+ }
+
+.info {
+    float: left;
+    width: 58%;
+ }
+
+.comment {
+    font-size: 90%;    
+    color: #666666;
+    height: 4em;
+    overflow: hidden;
+ }
+
+.author { 
+    margin: 5px;
+ }
+
+.author span { 
+    font-weight: bold;
+    margin-right: 5px;
+ }
+
+.hash {
+    float: right;
+    width: 40%;
+ }
+
+.hash div { 
+    padding: 0px 5px;
+    color: #666666;
+    border-left: 1px solid #FF8929;
+ }
+
+.hash a {
+    font-size: 0.85em;
+ }
+
+#files { 
+    clear: both;
+    margin: 10px 0px;
+    padding: 5px;
+    border-top: 1px solid #AAAAAA;
+    border-bottom: 1px solid #AAAAAA;
+ }
+
+#files ul { 
+    margin: 0px;
+    list-style-type: none;
+ }
+
+#diffs { 
+
+ }
+
+div.diff {
+    margin: 5px 0px;
+    padding: 5px;
+    border: 1px solid #AAAAAA;
+ }
+
+div.title { 
+    padding: 5px 10px;
+    border-bottom: 1px solid #AAAAAA;
+ }
+
+#diffs table { 
+    margin-top: 5px;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #CCCCCC;
+    background-color: #EDEDED;
+ }
+
+tr.gray { 
+    color: #666666;
+    background-color: #DADAF5;
+ }
+
+tr.green { 
+    background-color: #DDFFDD;
+ }
+
+tr.red { 
+    background-color: #FFDDDD;
+ }
+
+.paging {
+    margin: 2px;
+    text-align: right;
+ }
