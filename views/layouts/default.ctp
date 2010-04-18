@@ -3,7 +3,7 @@
     <head>
         <?php echo $html->charset(); ?>
         <title>
-            <?php __('Fatty: Cake + Git'); ?>
+            <?php __('Fatty: Git + Cake'); ?>
             <?php //echo $title_for_layout; ?>
         </title>
         <?php
@@ -15,7 +15,7 @@
     <body>
         <div id="container">
             <div id="header">
-                <h1><?php echo $html->link(__('Fatty: Cake + Git', true), array('action' => 'index')); ?></h1>
+                <h1><?php echo $html->link(__('Fatty: Git + Cake', true), array('action' => 'index')); ?></h1>
             </div>
             <div id="content">
 
