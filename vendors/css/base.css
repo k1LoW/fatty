@@ -14,11 +14,10 @@
 #header { 
     position: absolute;
     top:10px;
-    z-index: -1;
  }
 
 #content {
-    margin: 50px auto;
+    margin: 60px auto;
     width: 920px;
  }
 
