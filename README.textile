@@ -1,4 +1,4 @@
-h1. Fatty: Simple Git repogitory blowser plugin
+h1. Fatty: Simple Git repogitory browser plugin
 
 Git eat Cake!!
 !http://github.com/k1LoW/fatty/tree/master%2Fvendors%2Fimg%2Ffatty.png?raw=true!
