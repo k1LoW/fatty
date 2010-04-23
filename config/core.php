@@ -1,4 +1,8 @@
 <?php
+  /**
+   * Fatty: Simple Git repogitory browser plugin for CakePHP.
+   *
+   */
 if (!defined('FATTY_GIT_PATH')) {
     define('FATTY_GIT_PATH', '/usr/local/bin/git');
 }
