@@ -29,7 +29,7 @@
           echo $scripts_for_layout;
         ?>
         <script type="text/javascript">
-            var fattyBase = '<?php echo $this->Html->url('/'); ?>fatty';
+            var fattyBase = '<?php echo $this->Html->url('/'); ?>fatty/';
         </script>
         <?php endif; ?>
     </head>
