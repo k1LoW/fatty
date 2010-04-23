@@ -16,6 +16,9 @@
           echo $javascript->link('/fatty/js/fatty');
           echo $scripts_for_layout;
         ?>
+        <script type="text/javascript">
+            var fattyBase = '<?php echo $html->url('/'); ?>fatty/';
+        </script>
         <?php else: ?>
         <?php
           echo $this->Html->meta('icon');
@@ -25,6 +28,9 @@
           echo $this->Html->script('/fatty/js/fatty');
           echo $scripts_for_layout;
         ?>
+        <script type="text/javascript">
+            var fattyBase = '<?php echo $this->Html->url('/'); ?>fatty';
+        </script>
         <?php endif; ?>
     </head>
     <body>
