@@ -13,11 +13,11 @@
 
 #header {
     position: absolute;
-    top:10px;
+    top:15px;
  }
 
 #content {
-    margin: 60px auto;
+    margin: 65px auto;
     width: 920px;
  }
 
@@ -35,17 +35,17 @@ h1 a{
     color: #DDDDDD;
  }
 
+h1 a:visited {
+    color: #DDDDDD;
+    line-height: 1em;
+    font-size: 60px;
+ }
+
 h1 a:hover {
     color: #FF8929;
     line-height: 1em;
     font-size: 60px;
     text-decoration: underline;
- }
-
-h1 a:visited {
-    color: #DDDDDD;
-    line-height: 1em;
-    font-size: 60px;
  }
 
 h2 {

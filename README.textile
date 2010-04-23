@@ -1,4 +1,32 @@
-h1. Fatty: Simple Git repogitory browser plugin
+h1. Fatty: Simple Git repogitory browser plugin for CakePHP.
 
 Git eat Cake!!
 !http://github.com/k1LoW/fatty/tree/master%2Fvendors%2Fimg%2Ffatty.png?raw=true!
+
+This plugin provide local self git repogitory browser.
+
+h2. Features
+
+* `Commit History' like GitHub ( @git log@ ).
+* `Commit' detail like GitHub ( @git show@ ).
+* Show current branch name.
+
+h2. Usage
+
+First, put `fatty' directory on app/plugins in your CakePHP application.
+Second, add the following code in bootstrap.php.
+<pre>
+    define('FATTY_GIT_PATH', '/usr/local/bin/git'); // git path
+    define('FATTY_GIT_DIR', ROOT . DS . '.git' . DS); // local .git directory path
+</pre>
+Then, goto http://yourapp/fatty/ .
+
+h2. Show current branch name
+
+Add the following code in whichever controller you want to show current branch name (typically AppController) like DebugKit toolbar.
+<pre>
+<?php
+class AppController extends Controller {
+    var $components = array('Fatty.Git');
+}
+</pre>
