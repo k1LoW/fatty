@@ -26,6 +26,7 @@
     <div class="hash">        
         <div>commit:&nbsp;<?php echo $html->link($commit['hash'], array('action' => 'commit', $commit['hash'])); ?></div>
         <div>parent:&nbsp;<?php echo $html->link($commit['parent'], array('action' => 'commit', $commit['parent'])); ?></div>
+        <div>diff:&nbsp;<?php echo $html->link('HEAD', array('action' => 'diff', 'HEAD', $commit['hash'])); ?></div>
     </div>
 </div>
 <?php endforeach; ?>

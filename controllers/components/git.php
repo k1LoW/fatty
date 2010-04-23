@@ -173,6 +173,19 @@ class GitComponent extends Object {
     }
 
     /**
+     * diff
+     *
+     * @param $a
+     * @param $b
+     * @return
+     */
+    function diff($a = 'HEAD', $b = 'HEAD'){
+        $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " diff " . $a . " " . $b;
+        $out = $this->_exec($cmd);
+        pr($out);
+    }
+
+    /**
      * _exec
      *
      * @param $cmd
