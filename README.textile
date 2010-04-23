@@ -39,5 +39,6 @@ class AppController extends Controller {
 
 h2. TODO
 
+* Support CakePHP 1.3
 * Support auto paging
 * Support @git diff@
