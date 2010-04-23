@@ -25,6 +25,8 @@ Second, add the following code in bootstrap.php.
 
 Then, goto http://yourapp/fatty/ .
 
+!http://github.com/k1LoW/fatty/tree/master%2Fvendors%2Fimg%2Fss_index.png?raw=true!
+
 h2. Show current branch name
 
 Add the following code in whichever controller you want to show current branch name like DebugKit toolbar (typically AppController).
