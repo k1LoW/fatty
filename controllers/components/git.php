@@ -15,7 +15,7 @@ class GitComponent extends Object {
 
     var $settings = array();
     var $controller;
-    var $branch = 'master';
+    var $branch = null;
 
     /**
      * initialize
@@ -45,7 +45,6 @@ class GitComponent extends Object {
      * @return
      */
     function beforeRender(&$controller){
-        $this->branch;
         $controller->set('fattyBranch', $this->branch);
     }
 
@@ -186,13 +185,3 @@ class GitComponent extends Object {
     }
 
   }
-
-
-
-
-
-
-
-
-
-

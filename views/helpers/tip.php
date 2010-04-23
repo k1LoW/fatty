@@ -27,7 +27,6 @@ class TipHelper extends Helper {
 
         $tip = '';
 
-
         if (isset($view->viewVars['fattyBranch'])) {
             $style = 'background-color:#FF8929; color:#FFFFFF; font-weight:bold; margin:0px; line-height:1.4em; padding:2px 4px; position:absolute; top:0px;';
             if ($view->viewVars['fattyBranch'] != 'master') {
