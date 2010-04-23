@@ -10,7 +10,7 @@ h2. Features
 * `Commit History' like GitHub ( @git log@ ).
 * `Commit' detail like GitHub ( @git show@ ).
 * `Diff' between hashes ( @git diff@ ).
-* Show current branch name.
+* Display current branch name.
 
 h2. Usage
 
@@ -27,9 +27,9 @@ Then, goto http://yourapp/fatty/ .
 
 !http://github.com/k1LoW/fatty/tree/master%2Fvendors%2Fimg%2Fss_index.png?raw=true!
 
-h2. Show current branch name
+h2. Display current branch name
 
-Add the following code in whichever controller you want to show current branch name like DebugKit toolbar (typically AppController).
+Add the following code in whichever controller you want to display current branch name like DebugKit toolbar (typically AppController).
 
 <pre>
 <?php
