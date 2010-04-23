@@ -26,7 +26,7 @@ Then, goto http://yourapp/fatty/ .
 
 h2. Show current branch name
 
-Add the following code in whichever controller you want to show current branch name (typically AppController) like DebugKit toolbar.
+Add the following code in whichever controller you want to show current branch name like DebugKit toolbar (typically AppController).
 
 <pre>
 <?php
