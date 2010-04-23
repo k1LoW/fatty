@@ -39,5 +39,5 @@ class AppController extends Controller {
 
 h2. TODO
 
-* Aupport auto paging
+* Support auto paging
 * Support @git diff@
