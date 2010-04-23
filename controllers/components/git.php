@@ -33,10 +33,10 @@ class GitComponent extends Object {
      *
      */
     function startup(&$controller){
-        $this->branch();
         $controller->helpers['Fatty.Tip'] = array(
                                                    'forceEnable' => isset($this->settings['forceEnable'])? true : null,
                                                    );
+        $this->branch();
     }
 
     /**
@@ -182,7 +182,27 @@ class GitComponent extends Object {
     function diff($a = 'HEAD', $b = 'HEAD'){
         $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " diff " . $a . " " . $b;
         $out = $this->_exec($cmd);
-        pr($out);
+        $commit = array();
+        $commit['diff'] = array();
+        $diff = false;
+        $file = '';
+        $part = 0;
+        foreach ($out as $line) {
+            if (preg_match('/^diff --git a\/([\w\/.]+)/',$line,$matches)) {
+                $diff = true;
+                $file = $matches[1];
+                $commit['diff'][$file] = array();
+            }
+            if ($diff && $file && !preg_match('/^diff|^index|^\+\+\+|^---/',$line)) {
+                if (preg_match('/^@@/',$line)) {
+                    $part++;
+                    $commit['diff'][$file][$part] = array();
+                }
+
+                $commit['diff'][$file][$part][] = $line;
+            }
+        }
+        return $commit;
     }
 
     /**

@@ -43,6 +43,9 @@
                 <?php endif; ?>
             </div>
         </div>
+        <?php if (preg_match('/^1\.2/', Configure::version())): ?>
+        <!-- for CakePHP 1.2 -->
         <?php echo $cakeDebug; ?>
+        <?php endif; ?>
     </body>
 </html>

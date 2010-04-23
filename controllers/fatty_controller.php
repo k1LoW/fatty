@@ -64,8 +64,9 @@ class FattyController extends FattyAppController {
      * @return
      */
     function diff($a = 'HEAD', $b = 'HEAD'){
-        $diff = $this->Git->diff($a, $b);
-        $this->set(compact('diff'));
+        $commit = $this->Git->diff($a, $b);
+        $this->set(array('a' => $a, 'b' => $b));
+        $this->set(compact('commit'));
     }
 
   }

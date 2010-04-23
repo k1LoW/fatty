@@ -173,3 +173,11 @@ tr.red {
     margin: 2px;
     text-align: right;
  }
+
+.green {
+    background-color: #DDFFDD;
+ }
+
+.red {
+    background-color: #FFDDDD;
+ }
