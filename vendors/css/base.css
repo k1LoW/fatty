@@ -181,3 +181,9 @@ tr.red {
 .red {
     background-color: #FFDDDD;
  }
+
+.dropHover {
+    border: 2px dotted #FF8929;
+    background-color: #FFFFFF;
+    background-image: none;
+ }
