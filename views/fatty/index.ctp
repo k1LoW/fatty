@@ -16,7 +16,7 @@
 </div>
 
 <?php foreach ($logs as $commit): ?>
-<div class="commit">
+<div id="<?php echo $commit['hash']; ?>" class="commit draggable droppable">
     <div class="info">
         <div class="comment">
             <?php echo nl2br(h($commit['comment'])); ?>

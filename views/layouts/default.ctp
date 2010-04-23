@@ -13,14 +13,16 @@
           echo $html->css('/fatty/css/base');
           echo $javascript->link('/fatty/js/jquery-1.4.2.min');
           echo $javascript->link('/fatty/js/jquery-ui-1.8.custom.min');
+          echo $javascript->link('/fatty/js/fatty');
           echo $scripts_for_layout;
         ?>
         <?php else: ?>
         <?php
           echo $this->Html->meta('icon');
-          echo $this->Html->css('/fatty/css/base');          
-          echo $this->Html->script('/fatty/js/jquery-1.4.2.min');          
-          echo $this->Html->script('/fatty/js/jquery-ui-1.8.custom.min');          
+          echo $this->Html->css('/fatty/css/base');
+          echo $this->Html->script('/fatty/js/jquery-1.4.2.min');
+          echo $this->Html->script('/fatty/js/jquery-ui-1.8.custom.min');
+          echo $this->Html->script('/fatty/js/fatty');
           echo $scripts_for_layout;
         ?>
         <?php endif; ?>
