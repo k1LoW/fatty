@@ -182,6 +182,10 @@ tr.red {
     background-color: #FFDDDD;
  }
 
+.draggable {
+    cursor: move;
+ }
+
 .dropHover {
     border: 2px dotted #FF8929;
     background-color: #FFFFFF;
