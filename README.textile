@@ -36,3 +36,8 @@ class AppController extends Controller {
 </pre>
 
 !http://github.com/k1LoW/fatty/tree/master%2Fvendors%2Fimg%2Fss_master.png?raw=true! !http://github.com/k1LoW/fatty/tree/master%2Fvendors%2Fimg%2Fss_branch.png?raw=true!
+
+h2: TODO
+
+* AutoPagerize support
+* @git diff@ support
