@@ -34,3 +34,5 @@ class AppController extends Controller {
     var $components = array('Fatty.Git');
 }
 </pre>
+
+!http://github.com/k1LoW/fatty/tree/master%2Fvendors%2Fimg%2Fss_master.png?raw=true! !http://github.com/k1LoW/fatty/tree/master%2Fvendors%2Fimg%2Fss_branch.png?raw=true!
