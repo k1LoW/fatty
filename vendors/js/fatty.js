@@ -21,7 +21,7 @@ $(function(){
                                     drop: function(event, ui) {
                                         var $self = $(this);
                                         b = $(this).attr('id');
-                                        location.href = 'diff/' + a + '/' + b;
+                                        location.href = fattyBase + 'diff/' + a + '/' + b;
                                     }
                                 });
   });
