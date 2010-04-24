@@ -22,7 +22,7 @@ class FattyController extends FattyAppController {
      *
      */
     function index($page = 1){
-        $limit = 20;
+        $limit = FATTY_LOG_LIMIT;
         $skip = $limit * ($page - 1);
 
         $count = $this->Git->count();
@@ -34,11 +34,41 @@ class FattyController extends FattyAppController {
         $next = ($count/$limit < $page) ? null : $page + 1;
 
         $this->set(array('limit' => $limit,
-                   'count' =>  $count,
-                   'branch' =>  $branch,
-                   'page' =>  $page,
-                   'prev' =>  $prev,
-                   'next' =>  $next,
+                         'count' =>  $count,
+                         'branch' =>  $branch,
+                         'page' =>  $page,
+                         'prev' =>  $prev,
+                         'next' =>  $next,
+                         ));
+
+        $this->set(compact('logs'));
+    }
+
+    /**
+     * commit_logs
+     * description
+     *
+     * @param $page
+     * @return
+     */
+    function commit_logs($page = null){
+        $this->layout = 'ajax';
+        Configure::write('debug', 0);
+
+        $limit = FATTY_LOG_LIMIT;
+        $skip = $limit * ($page - 1);
+
+        $count = $this->Git->count();
+        $logs = $this->Git->log($limit, $skip);
+
+        $prev = ($page > 1) ? $page - 1 : null;
+        $next = ($count/$limit < $page) ? null : $page + 1;
+
+        $this->set(array('limit' => $limit,
+                         'count' =>  $count,
+                         'page' =>  $page,
+                         'prev' =>  $prev,
+                         'next' =>  $next,
                          ));
 
         $this->set(compact('logs'));

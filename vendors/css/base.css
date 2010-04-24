@@ -191,3 +191,20 @@ tr.red {
     background-color: #FFFFFF;
     background-image: none;
  }
+
+#autopaging { 
+    margin: 10px auto;
+    padding-top: 8px;
+    text-align: center;
+    cursor: pointer;
+    width: 510px;
+    height: 55px;
+    background-image: url(../img/button.png);
+    background-repeat: no-repeat;
+ }
+
+#autopaging a { 
+    color: #FF8929;
+    font-weight: bold;
+    font-size: 1.8em;
+ }

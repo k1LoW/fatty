@@ -10,3 +10,7 @@ if (!defined('FATTY_GIT_PATH')) {
 if (!defined('FATTY_GIT_DIR')) {
     define('FATTY_GIT_DIR', ROOT . DS . '.git' . DS);
 }
+
+if (!defined('FATTY_LOG_LIMIT')) {
+    define('FATTY_LOG_LIMIT', 20);
+}
