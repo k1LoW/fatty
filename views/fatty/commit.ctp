@@ -12,6 +12,9 @@
     <div class="hash">        
         <div>commit:&nbsp;<?php echo $html->link($commit['hash'], array('action' => 'commit', $commit['hash'])); ?></div>
         <div>parent:&nbsp;<?php echo $html->link($commit['parent'], array('action' => 'commit', $commit['parent'])); ?></div>
+        <?php if (!empty($commit['parent2'])) ?>
+        <div>parent:&nbsp;<?php echo $html->link($commit['parent2'], array('action' => 'commit', $commit['parent2'])); ?></div>
+        <?php endif: ?>
     </div>
 </div>
 

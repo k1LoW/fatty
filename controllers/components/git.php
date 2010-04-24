@@ -142,11 +142,13 @@ class GitComponent extends Object {
         $file = '';
         $part = 0;
         foreach ($out as $line) {
-            if (preg_match('/commit ([\w]+) ([\w]*)$/',$line,$matches)) {
+            if (preg_match('/commit ([\w]+) ([\w]*) *([\w]*)/',$line,$matches)) {
                 $hash = $matches[1];
                 $parent = $matches[2];
+                $parent2 = $matches[3];
                 $commit['hash'] = $hash;
                 $commit['parent'] = $parent;
+                $commit['parent2'] = $parent2;
             }
             if (preg_match('/Author: ([\w]+)/',$line,$matches)) {
                 $commit['Author'] = $matches[1];
