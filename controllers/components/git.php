@@ -15,7 +15,8 @@ class GitComponent extends Object {
 
     var $settings = array();
     var $controller;
-    var $branch = null;
+    var $currentBranch = null;
+    var $branches = array();
 
     /**
      * initialize
@@ -45,7 +46,7 @@ class GitComponent extends Object {
      * @return
      */
     function beforeRender(&$controller){
-        $controller->set('fattyBranch', $this->branch);
+        $controller->set('fattyBranch', $this->currentBranch);
     }
 
     /**
@@ -58,9 +59,11 @@ class GitComponent extends Object {
     function branch(){
         $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " branch";
         $out = $this->_exec($cmd);
+        $this->branches = array();
         foreach ($out as $value) {
+            $this->branches[] = $value;
             if (preg_match('/^\* *([^ ]+)/', $value, $matches)) {
-                $this->branch = $matches[1];
+                $this->currentBranch = $matches[1];
             }
         }
     }

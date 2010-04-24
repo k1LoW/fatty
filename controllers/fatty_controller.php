@@ -27,7 +27,7 @@ class FattyController extends FattyAppController {
 
         $count = $this->Git->count();
         $logs = $this->Git->log($limit, $skip);
-        $branch = $this->Git->branch;
+        $branch = $this->Git->currentBranch;
 
 
         $prev = ($page > 1) ? $page - 1 : null;
