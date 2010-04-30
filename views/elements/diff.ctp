@@ -20,13 +20,13 @@
                 <?php echo $mstart; $mstart++; ?>
                 <?php else: ?>
                 &nbsp;
-                <?php endif; ?>                
+                <?php endif; ?>
             </th>
             <th class="line_number">
                 <?php if ($matches[1] == '+'): ?>
                 <?php echo $pstart; $pstart++; ?>
                 <?php else: ?>
-                &nbsp;                
+                &nbsp;
                 <?php endif; ?>
             </th>
             <th>
@@ -39,27 +39,29 @@
         <?php else: ?>
         <tr class="<?php echo ($n == '0') ? 'gray' : ''; ?>">
         <th class="<?php echo ($n == '0' && !preg_match('/^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/',$line)) ? '' : 'line_number'; ?>">
-            <?php if ($n == '0'): ?>
-            &nbsp;
-            <?php else: ?>
-            <?php echo $mstart; $mstart++; ?>
-            <?php endif; ?>
-        </th>
-        <th class="<?php echo ($n == '0' && !preg_match('/^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/',$line)) ? '' : 'line_number'; ?>">
-            <?php if ($n == '0'): ?>
-            &nbsp;
-            <?php else: ?>
-            <?php echo $pstart; $pstart++; ?>
-            <?php endif; ?>
-        </th>
-        <th>
-        </th>
-        <td>
-            <?php echo preg_replace('/ /','&nbsp;', h($line)); ?>
-        </td>
-    </tr>
+        <?php if ($n == '0'): ?>
+        ...
+        <?php else: ?>
+        <?php echo $mstart; $mstart++; ?>
+        <?php endif; ?>
+    </th>
+    <th class="<?php echo ($n == '0' && !preg_match('/^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/',$line)) ? '' : 'line_number'; ?>">
+    <?php if ($n == '0'): ?>
+    ...
+    <?php else: ?>
+    <?php echo $pstart; $pstart++; ?>
     <?php endif; ?>
-    <?php endforeach; ?>
+</th>
+<th>
+</th>
+<td>
+    <div>
+        <?php echo preg_replace('/ /','&nbsp;', h($line)); ?>
+    </div>
+</td>
+</tr>
+<?php endif; ?>
+<?php endforeach; ?>
 </table>
 <?php endforeach; ?>
 </div>

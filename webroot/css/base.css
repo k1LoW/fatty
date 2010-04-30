@@ -148,12 +148,20 @@ div.title {
     border-bottom: 1px solid #AAAAAA;
  }
 
+#diffs {
+    /* overflow: auto;*/
+ }
+
 #diffs table {
     margin-top: 5px;
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #CCCCCC;
     background-color: #EDEDED;
+ }
+
+#diffs td {
+    width: 100%;
  }
 
 tr.gray {
@@ -182,11 +190,11 @@ tr.red {
     background-color: #FFDDDD;
  }
 
-.line_number {
-    width: 3em;
-    padding-right: 5px;
+th.line_number {
+    padding: 0 0.5em;
     text-align: right;
     border-right: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
     background-color: #ECECEC;
     font-weight: 100;
     color: #AAAAAA;
