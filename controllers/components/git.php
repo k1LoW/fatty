@@ -14,6 +14,7 @@ require APP . 'plugins' . DS . 'fatty' . DS . 'config' . DS . 'core.php';
 class GitComponent extends Object {
 
     var $settings = array();
+    var $enebled = true;
     var $controller;
     var $currentBranch = null;
     var $branches = array();
@@ -168,7 +169,7 @@ class GitComponent extends Object {
                 $commit['diff'][$file] = array();
             }
             if ($diff && $file && !preg_match('/^diff|^index|^\+\+\+|^---/',$line)) {
-                if (preg_match('/^@@/',$line)) {
+                if (preg_match('/^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/',$line)) {
                     $part++;
                     $commit['diff'][$file][$part] = array();
                 }
@@ -201,7 +202,7 @@ class GitComponent extends Object {
                 $commit['diff'][$file] = array();
             }
             if ($diff && $file && !preg_match('/^diff|^index|^\+\+\+|^---/',$line)) {
-                if (preg_match('/^@@/',$line)) {
+                if (preg_match('/^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/',$line)) {
                     $part++;
                     $commit['diff'][$file][$part] = array();
                 }
