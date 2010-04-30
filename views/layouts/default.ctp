@@ -29,7 +29,12 @@
           echo $scripts_for_layout;
         ?>
         <script type="text/javascript">
+            <?php if (preg_match('/^1\.2/', Configure::version())): ?>
+            <!-- for CakePHP 1.2 -->
             var fattyBase = '<?php echo $this->Html->url('/'); ?>fatty/';
+            <?php else: ?>
+            var fattyBase = '<?php echo $this->Html->url('/'); ?>fatty/fatty/';
+            <?php endif; ?>
         </script>
         <?php endif; ?>
     </head>
