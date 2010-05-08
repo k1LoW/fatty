@@ -221,7 +221,8 @@ th.commiter{
     background-color: #FEFEFE;
     font-weight: 100;
     color: #333333;
-    padding: 2px;
+    text-align: left;
+    padding: 3px;
  }
 
 .draggable {
