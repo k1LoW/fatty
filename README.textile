@@ -10,6 +10,7 @@ h2. Features
 * `Commit History' like GitHub ( @git log@ ).
 * `Commit' detail like GitHub ( @git show@ ).
 * `Diff' between hashes ( @git diff@ ).
+* File blame like GitHub ( @git blame@ ).
 * Display current branch name.
 
 h2. Usage
@@ -53,3 +54,4 @@ h2. TODO
 * -Support @git diff@ any hash-
 * -Support @git blame@-
 * Support file commit log ( @git log file@ )
+* File tree (@git ls-tree@)
