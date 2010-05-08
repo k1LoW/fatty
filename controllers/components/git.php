@@ -142,6 +142,8 @@ class GitComponent extends Object {
         $commit = array();
         $commit['comment'] = '';
         $commit['diff'] = array();
+        $author = false;
+        $date = false;
         $diff = false;
         $file = '';
         $part = 0;
@@ -154,10 +156,12 @@ class GitComponent extends Object {
                 $commit['parent'] = $parent;
                 $commit['parent2'] = $parent2;
             }
-            if (preg_match('/Author: ([\w]+)/',$line,$matches)) {
+            if (preg_match('/Author: ([\w]+)/',$line,$matches) && !$author) {
+                $author = true;
                 $commit['Author'] = $matches[1];
             }
-            if (preg_match('/Date:[ ]*(.+)$/',$line,$matches)) {
+            if (preg_match('/Date:[ ]*(.+)$/',$line,$matches) && !$date) {
+                $date = true;
                 $commit['Date'] = $matches[1];
             }
             if (preg_match('/^[ ]{4}(.+)$/',$line,$matches) && !$diff) {
