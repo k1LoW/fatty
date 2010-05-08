@@ -3,11 +3,20 @@
         <?php echo $filepath; ?>
     </div>
     <table>
+        <?php $currentHash = ''; ?>
         <?php foreach ($blame as $line): ?>
-        <tr>
-            <th>
-                <?php echo $html->link(substr($line['hash'] , 0, 8), array('action' => 'commit', str_replace('^', '', $line['hash']))); ?>
+        <?php if ($currentHash != $line['hash']): ?>
+        <tr class="hash_head">
+            <th class="commiter">
+                <?php echo $html->link(substr($line['hash'] , 0, 8) . '>>', array('action' => 'commit', str_replace('^', '', $line['hash']))); ?><?php echo $line['commiter']; ?>
+                <?php echo date('Y-m-d', strtotime($line['date'])); ?>
             </th>
+            <?php else: ?>
+        <tr>
+            <th class="commiter">
+            </th>            
+            <?php endif; ?>
+        <?php $currentHash = $line['hash']; ?>
             <th class="line_number">
                 <?php echo $line['line']; ?>
             </th>

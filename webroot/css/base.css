@@ -200,6 +200,30 @@ th.line_number {
     color: #AAAAAA;
  }
 
+#blame table {
+    margin-top: 5px;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #CCCCCC;
+    background-color: #EDEDED;
+ }
+
+#blame td {
+    width: 100%;
+    background-color: #FEFEFE;
+ }
+
+tr.hash_head {
+    border-top: 1px solid #CCCCCC;
+ }
+
+th.commiter{
+    background-color: #FEFEFE;
+    font-weight: 100;
+    color: #333333;
+    padding: 2px;
+ }
+
 .draggable {
     cursor: move;
  }
