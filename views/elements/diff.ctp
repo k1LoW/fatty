@@ -8,7 +8,7 @@
         <?php foreach ($diff as $part): ?>
         <table>
             <?php foreach ($part as $n => $line): ?>
-            <?php if (preg_match('/^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/',$line, $matches)): ?>
+            <?php if (preg_match('/^@@ -(\d+),(\d+) \+(\d+),?(\d*) @@/',$line, $matches)): ?>
             <?php
               $mstart = $matches[1];
               $pstart = $matches[3];

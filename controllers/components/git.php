@@ -92,10 +92,12 @@ class GitComponent extends Object {
     function log($limit = 20, $offset = 0){
         $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --stat -n " . $limit . " --skip=" . $offset . " --parents";
         $out = $this->_exec($cmd);
+        $author = false;
+        $date = false;
 
         $logs = array();
         foreach ($out as $line) {
-            if (preg_match('/^commit ([\w]+) ([\w]*) *([\w]*)/',$line,$matches)) {
+            if (preg_match('/^commit ([\w]+) *([\w]*) *([\w]*)/',$line,$matches)) {
                 $hash = $matches[1];
                 $parent = $matches[2];
                 $parent2 = $matches[3];
@@ -103,10 +105,12 @@ class GitComponent extends Object {
                 $logs[$hash]['parent'] = $parent;
                 $logs[$hash]['parent2'] = $parent2;
             }
-            if (preg_match('/Author: ([\w]+)/',$line,$matches)) {
+            if (preg_match('/Author: ([\w]+)/',$line,$matches) && !$author) {
+                $author = true;
                 $logs[$hash]['Author'] = $matches[1];
             }
-            if (preg_match('/Date:[ ]*(.+)$/',$line,$matches)) {
+            if (preg_match('/Date:[ ]*(.+)$/',$line,$matches) && !$date) {
+                $date = true;
                 $logs[$hash]['Date'] = $matches[1];
             }
             if (preg_match('/^[ ]{4}(.+)$/',$line,$matches)) {
@@ -142,6 +146,8 @@ class GitComponent extends Object {
         $commit = array();
         $commit['comment'] = '';
         $commit['diff'] = array();
+        $author = false;
+        $date = false;
         $diff = false;
         $file = '';
         $part = 0;
@@ -154,10 +160,12 @@ class GitComponent extends Object {
                 $commit['parent'] = $parent;
                 $commit['parent2'] = $parent2;
             }
-            if (preg_match('/Author: ([\w]+)/',$line,$matches)) {
+            if (preg_match('/Author: ([\w]+)/',$line,$matches) && !$author) {
+                $author = true;
                 $commit['Author'] = $matches[1];
             }
-            if (preg_match('/Date:[ ]*(.+)$/',$line,$matches)) {
+            if (preg_match('/Date:[ ]*(.+)$/',$line,$matches) && !$date) {
+                $date = true;
                 $commit['Date'] = $matches[1];
             }
             if (preg_match('/^[ ]{4}(.+)$/',$line,$matches) && !$diff) {
@@ -169,7 +177,7 @@ class GitComponent extends Object {
                 $commit['diff'][$file] = array();
             }
             if ($diff && $file && !preg_match('/^diff|^index|^\+\+\+|^---/',$line)) {
-                if (preg_match('/^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/',$line)) {
+                if (preg_match('/^@@ -(\d+),(\d+) \+(\d+),?(\d*) @@/',$line)) {
                     $part++;
                     $commit['diff'][$file][$part] = array();
                 }
