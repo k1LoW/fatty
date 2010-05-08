@@ -3,6 +3,7 @@
     <div class="diff">
         <div class="title">
             <?php echo $file; ?>
+            <div><?php echo $html->link(__('blame', true), array('action' => 'blame', base64_encode($file))); ?></div>
         </div>
         <?php foreach ($diff as $part): ?>
         <table>

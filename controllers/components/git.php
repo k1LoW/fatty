@@ -36,8 +36,8 @@ class GitComponent extends Object {
      */
     function startup(&$controller){
         $controller->helpers['Fatty.Tip'] = array(
-                                                   'forceEnable' => isset($this->settings['forceEnable'])? true : null,
-                                                   );
+                                                  'forceEnable' => isset($this->settings['forceEnable'])? true : null,
+                                                  );
         $this->branch();
     }
 
@@ -146,7 +146,7 @@ class GitComponent extends Object {
         $file = '';
         $part = 0;
         foreach ($out as $line) {
-            if (preg_match('/^commit ([\w]+) ([\w]*) *([\w]*)/',$line,$matches)) {
+            if (preg_match('/^commit ([\w]+) *([\w]*) *([\w]*)/',$line,$matches)) {
                 $hash = $matches[1];
                 $parent = $matches[2];
                 $parent2 = $matches[3];
@@ -214,6 +214,29 @@ class GitComponent extends Object {
     }
 
     /**
+     * blame
+     *
+     * @param $filepath
+     * @return
+     */
+    function blame($filepath){
+        $root = preg_replace('/\.git\/*/', '', FATTY_GIT_DIR);
+        $cmd = 'cd ' . $root . ';' . FATTY_GIT_PATH . " blame -l" . " " . $root . $filepath;
+        $out = $this->_exec($cmd);
+        $blame = array();
+        foreach ($out as $line) {
+            if (preg_match('/^([\w\W^]+) \(([^ ]+) +(.+) +([\d]+)\) (.+)$/',$line,$matches)) {
+                $blame[] = array('hash' => $matches[1],
+                              'commiter' => $matches[2],
+                              'date' => $matches[3],
+                              'line' => $matches[4],
+                              'code' => $matches[5]);
+            }
+        }
+        return $blame;
+    }
+
+    /**
      * _exec
      *
      * @param $cmd
@@ -225,4 +248,4 @@ class GitComponent extends Object {
         return $out;
     }
 
-  }
+}

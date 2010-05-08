@@ -99,4 +99,17 @@ class FattyController extends FattyAppController {
         $this->set(compact('commit'));
     }
 
+    /**
+     * blame
+     * description
+     *
+     * @param $filepath
+     * @return
+     */
+    function blame($filepath = null){
+        $filepath = base64_decode($filepath);
+        $blame = $this->Git->blame($filepath);
+        $this->set('filepath', $filepath);
+        $this->set(compact('blame'));
+    }
   }
