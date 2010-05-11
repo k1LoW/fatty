@@ -1,5 +1,5 @@
 <h2>
-    <?php echo $filepath; ?> / <?php __('Commit History'); ?> <span>(<?php echo $branch; ?>)</span>
+    <span><?php echo $filepath; ?> /</span> <?php __('Commit History'); ?> <span>(<?php echo $branch; ?>)</span>
 </h2>
 
 <?php foreach ($logs as $commit): ?>
