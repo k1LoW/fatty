@@ -76,8 +76,14 @@ class GitComponent extends Object {
      * @param
      * @return
      */
-    function count(){
-        $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --pretty=oneline | wc -l";
+    function count($filepath = null){
+        if ($filepath) {
+            $root = preg_replace('/\.git\/*/', '', FATTY_GIT_DIR);
+            $cmd = 'cd ' . $root . ';GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --pretty=oneline " . $root . $filepath . " | wc -l";
+        } else {
+            $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --pretty=oneline | wc -l";
+        }
+
         $out = $this->_exec($cmd);
         return $out[0];
     }
@@ -89,9 +95,16 @@ class GitComponent extends Object {
      * @param
      * @return
      */
-    function log($limit = 20, $offset = 0){
-        $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --stat -n " . $limit . " --skip=" . $offset . " --parents";
+    function log($limit = 20, $offset = 0, $filepath = null){
+        if ($filepath) {
+            $root = preg_replace('/\.git\/*/', '', FATTY_GIT_DIR);
+            $cmd = 'cd ' . $root . ';GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --stat -n " . $limit . " --skip=" . $offset . " --parents " . $root . $filepath;
+        } else {
+            $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --stat -n " . $limit . " --skip=" . $offset . " --parents";
+        }
+
         $out = $this->_exec($cmd);
+
         $logs = array();
         foreach ($out as $line) {
             if (preg_match('/^commit ([\w]+) *([\w]*) *([\w]*)/',$line,$matches)) {

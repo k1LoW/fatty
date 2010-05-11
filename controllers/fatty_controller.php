@@ -51,20 +51,23 @@ class FattyController extends FattyAppController {
      * @param $page
      * @return
      */
-    function commit_logs($page = null){
+    function commit_logs($page = null, $filepath = null){
         $this->layout = 'ajax';
         Configure::write('debug', 0);
 
+        $filepath = base64_decode($filepath);
         $limit = FATTY_LOG_LIMIT;
         $skip = $limit * ($page - 1);
 
-        $count = $this->Git->count();
-        $logs = $this->Git->log($limit, $skip);
+        $count = $this->Git->count($filepath);
+        $logs = $this->Git->log($limit, $skip, $filepath);
 
         $prev = ($page > 1) ? $page - 1 : null;
         $next = ($count/$limit < $page) ? null : $page + 1;
 
-        $this->set(array('limit' => $limit,
+        $this->set(array(
+                         'filepath' => $filepath,
+                         'limit' => $limit,
                          'count' =>  $count,
                          'page' =>  $page,
                          'prev' =>  $prev,
@@ -87,6 +90,38 @@ class FattyController extends FattyAppController {
     }
 
     /**
+     * commits
+     * show file commits
+     *
+     * @param $filepath
+     * @return
+     */
+    function commits($filepath = null, $page = 1){
+        $filepath = base64_decode($filepath);
+        $limit = FATTY_LOG_LIMIT;
+        $skip = $limit * ($page - 1);
+
+        $count = $this->Git->count($filepath);
+        $logs = $this->Git->log($limit, $skip, $filepath);
+        $branch = $this->Git->currentBranch;
+
+        $prev = ($page > 1) ? $page - 1 : null;
+        $next = ($count/$limit < $page) ? null : $page + 1;
+
+        $this->set(array(
+                         'filepath' => $filepath,
+                         'limit' => $limit,
+                         'count' =>  $count,
+                         'branch' =>  $branch,
+                         'page' =>  $page,
+                         'prev' =>  $prev,
+                         'next' =>  $next,
+                         ));
+
+        $this->set(compact('logs'));
+    }
+
+    /**
      * diff
      * diff
      *
@@ -101,7 +136,7 @@ class FattyController extends FattyAppController {
 
     /**
      * blame
-     * description
+     * file blame
      *
      * @param $filepath
      * @return

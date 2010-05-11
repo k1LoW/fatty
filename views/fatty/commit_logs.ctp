@@ -21,6 +21,6 @@
 
 <?php if ($next): ?>
 <div id="autopaging" rel="next">
-<?php echo $html->link(__('Next', true), array('action' => 'commit_logs', $next)); ?>
+<?php echo $html->link(__('Next', true), array('action' => 'commit_logs', $next, base64_encode($filepath))); ?>
 </div>
 <?php endif; ?>
