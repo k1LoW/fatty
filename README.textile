@@ -53,5 +53,5 @@ h2. TODO
 * -Support auto paging-
 * -Support @git diff@ any hash-
 * -Support @git blame@-
-* Support file commit log ( @git log file@ )
+* -Support file commit log ( @git log file@ )-
 * File tree (@git ls-tree@)

@@ -148,6 +148,10 @@ div.title {
     border-bottom: 1px solid #AAAAAA;
  }
 
+.title div {
+    float: right;
+ }
+
 #diffs {
     /* overflow: auto;*/
  }
