@@ -17,6 +17,12 @@
               $pstart = $matches[3];
             ?>
             <?php endif; ?>
+            <?php if (preg_match('/^@@@ -(\d+),?(\d*) [\+-](\d+),?(\d*) ?[\+-]?(\d*),?(\d*) @@/',$line, $matches)): ?>
+            <?php
+              $mstart = $matches[1];
+              $pstart = $matches[5];
+            ?>
+            <?php endif; ?>
             <?php if (preg_match('/^([\+-])(.*)$/', $line, $matches)): ?>
             <tr class="<?php echo ($matches[1] == '+') ? 'green' : 'red'; ?>">
             <th class="line_number">
