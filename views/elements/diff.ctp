@@ -90,6 +90,38 @@
 </td>
 </tr>
 
+<?php elseif (preg_match('/^([\+-])([\+-])(.*)$/', $line, $matches)): ?>
+
+<tr class="<?php echo ($matches[1] == '+') ? 'green' : 'red'; ?>">
+<th class="line_number">
+    <?php if ($matches[1] == '-'): ?>
+    <?php echo $mstart; $mstart++; ?>
+    <?php else: ?>
+    &nbsp;
+    <?php endif; ?>
+</th>
+<th class="line_number">
+    <?php if ($matches[1] == '-'): ?>
+    <?php echo $m2start; $m2start++; ?>
+    <?php else: ?>
+    &nbsp;
+    <?php endif; ?>
+</th>
+<th class="line_number">
+    <?php if ($matches[1] == '+'): ?>
+    <?php echo $pstart; $pstart++; ?>
+    <?php else: ?>
+    &nbsp;
+    <?php endif; ?>
+</th>
+<th>
+    <?php echo $matches[1]; ?>
+</th>
+<td>
+    <?php echo preg_replace('/ /','&nbsp;', h($matches[3])); ?>
+</td>
+</tr>
+
 <?php else: ?>
 <tr class="<?php echo ($n == '0') ? 'gray' : ''; ?>">
 <th class="<?php echo ($n == '0' && !preg_match('/^@@@? -(\d+),?(\d*) [\+-](\d+),?(\d*) ?[\+-]?(\d*),?(\d*) @@/',$line)) ? '' : 'line_number'; ?>">
