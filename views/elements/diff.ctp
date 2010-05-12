@@ -15,52 +15,103 @@
             <?php
               $mstart = $matches[1];
               $pstart = $matches[3];
+              $multi = false;
             ?>
             <?php endif; ?>
             <?php if (preg_match('/^@@@ -(\d+),?(\d*) [\+-](\d+),?(\d*) ?[\+-]?(\d*),?(\d*) @@/',$line, $matches)): ?>
             <?php
               $mstart = $matches[1];
+              $m2start = $matches[3];
               $pstart = $matches[5];
+              $multi = true;
             ?>
             <?php endif; ?>
-            <?php if (preg_match('/^([\+-])(.*)$/', $line, $matches)): ?>
-            <tr class="<?php echo ($matches[1] == '+') ? 'green' : 'red'; ?>">
-            <th class="line_number">
-                <?php if ($matches[1] == '-'): ?>
-                <?php echo $mstart; $mstart++; ?>
-                <?php else: ?>
-                &nbsp;
-                <?php endif; ?>
-            </th>
-            <th class="line_number">
-                <?php if ($matches[1] == '+'): ?>
-                <?php echo $pstart; $pstart++; ?>
-                <?php else: ?>
-                &nbsp;
-                <?php endif; ?>
-            </th>
-            <th>
-                <?php echo $matches[1]; ?>
-            </th>
-            <td>
-                <?php echo preg_replace('/ /','&nbsp;', h($matches[2])); ?>
-            </td>
-        </tr>
-        <?php else: ?>
-        <tr class="<?php echo ($n == '0') ? 'gray' : ''; ?>">
-        <th class="<?php echo ($n == '0' && !preg_match('/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@/',$line)) ? '' : 'line_number'; ?>">
-        <?php if ($n == '0'): ?>
-        ...
-        <?php else: ?>
-        <?php echo $mstart; $mstart++; ?>
-        <?php endif; ?>
-    </th>
-    <th class="<?php echo ($n == '0' && !preg_match('/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@/',$line)) ? '' : 'line_number'; ?>">
-    <?php if ($n == '0'): ?>
-    ...
+            <?php if ($multi): ?>
+
+<?php if (preg_match('/^([\+-]) (.*)$/', $line, $matches)): ?>
+<tr class="<?php echo ($matches[1] == '+') ? 'green' : 'red'; ?>">
+<th class="line_number">
+    <?php if ($matches[1] == '-'): ?>
+    <?php echo $mstart; $mstart++; ?>
     <?php else: ?>
-    <?php echo $pstart; $pstart++; ?>
+    &nbsp;
     <?php endif; ?>
+</th>
+<th class="line_number">
+    <?php if ($matches[1] == '+'): ?>
+    <?php echo $m2start; $m2start++; ?>
+    <?php else: ?>
+    &nbsp;
+    <?php endif; ?>
+</th>
+<th class="line_number">
+    <?php if ($matches[1] == '+'): ?>
+    <?php echo $pstart; $pstart++; ?>
+    <?php else: ?>
+    &nbsp;
+    <?php endif; ?>
+</th>
+<th>
+    <?php echo $matches[1]; ?>
+</th>
+<td>
+    <?php echo preg_replace('/ /','&nbsp;', h($matches[2])); ?>
+</td>
+</tr>
+<?php elseif (preg_match('/^ ([\+-])(.*)$/', $line, $matches)): ?>
+
+<tr class="<?php echo ($matches[1] == '+') ? 'green' : 'red'; ?>">
+<th class="line_number">
+    <?php if ($matches[1] == '+'): ?>
+    <?php echo $mstart; $mstart++; ?>
+    <?php else: ?>
+    &nbsp;
+    <?php endif; ?>
+</th>
+<th class="line_number">
+    <?php if ($matches[1] == '-'): ?>
+    <?php echo $m2start; $m2start++; ?>
+    <?php else: ?>
+    &nbsp;
+    <?php endif; ?>
+</th>
+<th class="line_number">
+    <?php if ($matches[1] == '+'): ?>
+    <?php echo $pstart; $pstart++; ?>
+    <?php else: ?>
+    &nbsp;
+    <?php endif; ?>
+</th>
+<th>
+    <?php echo $matches[1]; ?>
+</th>
+<td>
+    <?php echo preg_replace('/ /','&nbsp;', h($matches[2])); ?>
+</td>
+</tr>
+
+<?php else: ?>
+<tr class="<?php echo ($n == '0') ? 'gray' : ''; ?>">
+<th class="<?php echo ($n == '0' && !preg_match('/^@@@? -(\d+),?(\d*) [\+-](\d+),?(\d*) ?[\+-]?(\d*),?(\d*) @@/',$line)) ? '' : 'line_number'; ?>">
+<?php if ($n == '0'): ?>
+...
+<?php else: ?>
+<?php echo $mstart; $mstart++; ?>
+<?php endif; ?>
+</th>
+<th class="<?php echo ($n == '0' && !preg_match('/^@@@? -(\d+),?(\d*) [\+-](\d+),?(\d*) ?[\+-]?(\d*),?(\d*) @@/',$line)) ? '' : 'line_number'; ?>">
+<?php if ($n == '0'): ?>
+...
+<?php else: ?>
+<?php echo $m2start; $m2start++; ?>
+<?php endif; ?>
+</th>
+<th class="<?php echo ($n == '0' && !preg_match('/^@@@? -(\d+),?(\d*) [\+-](\d+),?(\d*) ?[\+-]?(\d*),?(\d*) @@/',$line)) ? '' : 'line_number'; ?>">
+<?php if ($n == '0'): ?>
+...
+<?php else: ?>
+<?php echo $pstart; $pstart++; ?>
+<?php endif; ?>
 </th>
 <th>
 </th>
@@ -71,6 +122,57 @@
 </td>
 </tr>
 <?php endif; ?>
+
+            <?php else: ?>
+<?php if (preg_match('/^([\+-])(.*)$/', $line, $matches)): ?>
+<tr class="<?php echo ($matches[1] == '+') ? 'green' : 'red'; ?>">
+<th class="line_number">
+    <?php if ($matches[1] == '-'): ?>
+    <?php echo $mstart; $mstart++; ?>
+    <?php else: ?>
+    &nbsp;
+    <?php endif; ?>
+</th>
+<th class="line_number">
+    <?php if ($matches[1] == '+'): ?>
+    <?php echo $pstart; $pstart++; ?>
+    <?php else: ?>
+    &nbsp;
+    <?php endif; ?>
+</th>
+<th>
+    <?php echo $matches[1]; ?>
+</th>
+<td>
+    <?php echo preg_replace('/ /','&nbsp;', h($matches[2])); ?>
+</td>
+</tr>
+<?php else: ?>
+<tr class="<?php echo ($n == '0') ? 'gray' : ''; ?>">
+<th class="<?php echo ($n == '0' && !preg_match('/^@@@? -(\d+),?(\d*) [\+-](\d+),?(\d*) ?[\+-]?(\d*),?(\d*) @@/',$line)) ? '' : 'line_number'; ?>">
+<?php if ($n == '0'): ?>
+...
+<?php else: ?>
+<?php echo $mstart; $mstart++; ?>
+<?php endif; ?>
+</th>
+<th class="<?php echo ($n == '0' && !preg_match('/^@@@? -(\d+),?(\d*) [\+-](\d+),?(\d*) ?[\+-]?(\d*),?(\d*) @@/',$line)) ? '' : 'line_number'; ?>">
+<?php if ($n == '0'): ?>
+...
+<?php else: ?>
+<?php echo $pstart; $pstart++; ?>
+<?php endif; ?>
+</th>
+<th>
+</th>
+<td>
+    <div>
+        <?php echo preg_replace('/ /','&nbsp;', h($line)); ?>
+    </div>
+</td>
+</tr>
+<?php endif; ?>            
+            <?php endif; ?>
 <?php endforeach; ?>
 </table>
 <?php endforeach; ?>
