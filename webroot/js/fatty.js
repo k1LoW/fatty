@@ -1,20 +1,20 @@
 $(function(){
 
       $('#autopaging').live('click',function() {
-                                 var $self = $(this);
-                                 var url = $(this).find('a').attr('href');
-                                 $(this).find('a').removeAttr('href');
+                                var $self = $(this);
+                                var url = $(this).find('a').attr('href');
+                                $(this).find('a').removeAttr('href');
 
-                                 // loading
-                                 var $img = $('<img>').attr({id:'loading',
-                                                             src:fattyBase + 'img/loading.gif'});
-                                 $self.html('').append($img);
-                                 $.get(url, function (res) {
-                                           $('#content').append(res);
-                                           $self.remove();
-                                           init();
-                                       });
-                             });
+                                // loading
+                                var $img = $('<img>').attr({id:'loading',
+                                                            src:fattyBase + 'img/loading.gif'});
+                                $self.html('').append($img);
+                                $.get(url, function (res) {
+                                          $('#content').append(res);
+                                          $self.remove();
+                                          init();
+                                      });
+                            });
 
       function init () {
           var a = null;
@@ -42,6 +42,16 @@ $(function(){
                                             location.href = fattyBase + 'diff/' + a + '/' + b;
                                         }
                                     });
+
+          $('div#container').dblclick(function(){
+                                          var action = 'tree';
+
+                                          if (location.href.match(/tree/)) {
+                                              action = 'index';
+                                          }
+
+                                          location.href = fattyBase + action;
+                                      });
       }
 
       init();

@@ -10,7 +10,18 @@
     $(function(){
     $("#repogitory").treeview({
     url: fattyBase + 'ls_tree/',
-    })
+    });
+
+    $("span.file").live('click', function () {
+    var $self = $(this);
+    var filename = $self.text();
+    var filepath = $self.parents("li").map(function() { return $(this).find('span.folder:first').text();}).get().reverse().join('/');
+    if (filepath) {
+    location.href = fattyBase + 'blame/' + base64.encodeStringAsUTF8(filepath + filename);
+    } else {
+    location.href = fattyBase + 'blame/' + base64.encodeStringAsUTF8(filename);
+    }
+    });
     });
 </script>
 

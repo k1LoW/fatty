@@ -17,6 +17,7 @@
           echo $javascript->link('/fatty/js/jquery.cookie');
           echo $javascript->link('/fatty/js/jquery.treeview');
           echo $javascript->link('/fatty/js/jquery.treeview.async');
+          echo $javascript->link('/fatty/js/base64');
           echo $javascript->link('/fatty/js/fatty');
           echo $scripts_for_layout;
         ?>
@@ -33,6 +34,7 @@
           echo $this->Html->script('/fatty/js/jquery.cookie');
           echo $this->Html->script('/fatty/js/jquery.treeview');
           echo $this->Html->script('/fatty/js/jquery.treeview.async');
+          echo $this->Html->script('/fatty/js/base64');
           echo $this->Html->script('/fatty/js/fatty');
           echo $scripts_for_layout;
         ?>
