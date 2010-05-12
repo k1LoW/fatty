@@ -239,9 +239,10 @@ class GitComponent extends Object {
         $root = preg_replace('/\.git\/*/', '', FATTY_GIT_DIR);
         $cmd = 'cd ' . $root . ';' . FATTY_GIT_PATH . " blame -l" . " " . $root . $filepath;
         $out = $this->_exec($cmd);
+        //pr($out);
         $blame = array();
         foreach ($out as $line) {
-            if (preg_match('/^([\w\W^]+) \(([^ ]+) +(.+) +([\d]+)\) (.+)$/',$line,$matches)) {
+            if (preg_match('/^([0-9a-z^]+) \(([^ \)]+) +([^\)]+) +([\d]+)\) (.+)$/',$line,$matches)) {
                 $blame[] = array('hash' => $matches[1],
                                  'commiter' => $matches[2],
                                  'date' => $matches[3],
