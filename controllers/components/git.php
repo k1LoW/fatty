@@ -185,7 +185,7 @@ class GitComponent extends Object {
                 $commit['diff'][$file] = array();
             }
             if ($diff && $file && !preg_match('/^diff|^index|^\+\+\+|^---/',$line)) {
-                if (preg_match('/^@@ -(\d+),(\d+) \+(\d+),?(\d*) @@/',$line)) {
+                if (preg_match('/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@/',$line)) {
                     $part++;
                     $commit['diff'][$file][$part] = array();
                 }

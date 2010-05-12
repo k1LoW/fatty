@@ -11,7 +11,7 @@
         <?php foreach ($diff as $part): ?>
         <table>
             <?php foreach ($part as $n => $line): ?>
-            <?php if (preg_match('/^@@ -(\d+),(\d+) \+(\d+),?(\d*) @@/',$line, $matches)): ?>
+            <?php if (preg_match('/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@/',$line, $matches)): ?>
             <?php
               $mstart = $matches[1];
               $pstart = $matches[3];
@@ -42,14 +42,14 @@
         </tr>
         <?php else: ?>
         <tr class="<?php echo ($n == '0') ? 'gray' : ''; ?>">
-        <th class="<?php echo ($n == '0' && !preg_match('/^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/',$line)) ? '' : 'line_number'; ?>">
+        <th class="<?php echo ($n == '0' && !preg_match('/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@/',$line)) ? '' : 'line_number'; ?>">
         <?php if ($n == '0'): ?>
         ...
         <?php else: ?>
         <?php echo $mstart; $mstart++; ?>
         <?php endif; ?>
     </th>
-    <th class="<?php echo ($n == '0' && !preg_match('/^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/',$line)) ? '' : 'line_number'; ?>">
+    <th class="<?php echo ($n == '0' && !preg_match('/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@/',$line)) ? '' : 'line_number'; ?>">
     <?php if ($n == '0'): ?>
     ...
     <?php else: ?>
