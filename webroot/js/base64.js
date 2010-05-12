@@ -1,6 +1,7 @@
 /**
  * Base64 encoding
  * http://www.ietf.org/rfc/rfc2045.txt
+ * http://d.hatena.ne.jp/elm200/20080211/1202730571
  */
 var Base64 = function() {
     this.initialize();
