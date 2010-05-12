@@ -62,3 +62,4 @@ h2. TODO
 * -Support @git blame@-
 * -Support file commit log ( @git log file@ )-
 * -File tree (@git ls-tree@)-
+* Fix multi_parents bug
