@@ -147,4 +147,33 @@ class FattyController extends FattyAppController {
         $this->set('filepath', $filepath);
         $this->set(compact('blame'));
     }
+
+    /**
+     * tree
+     * file browser
+     *
+     * @param $hash
+     * @return
+     */
+    function tree($hash = 'HEAD'){
+        $branch = $this->Git->currentBranch;
+        $this->set(array(
+                         'hash' => $hash,
+                         'branch' =>  $branch,
+                         ));
+    }
+
+    /**
+     * ls_tree
+     *
+     * @param $arg
+     * @return
+     */
+    function ls_tree(){
+        $hash = ($this->params['url']['root'] == 'source') ? 'HEAD' :  $this->params['url']['root'];
+        $this->layout = 'ajax';
+        Configure::write('debug', 0);
+        $tree = $this->Git->tree($hash);
+        $this->set('tree', $tree);
+    }
   }

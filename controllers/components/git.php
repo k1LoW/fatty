@@ -243,13 +243,35 @@ class GitComponent extends Object {
         foreach ($out as $line) {
             if (preg_match('/^([\w\W^]+) \(([^ ]+) +(.+) +([\d]+)\) (.+)$/',$line,$matches)) {
                 $blame[] = array('hash' => $matches[1],
-                              'commiter' => $matches[2],
-                              'date' => $matches[3],
-                              'line' => $matches[4],
-                              'code' => $matches[5]);
+                                 'commiter' => $matches[2],
+                                 'date' => $matches[3],
+                                 'line' => $matches[4],
+                                 'code' => $matches[5]);
             }
         }
         return $blame;
+    }
+
+    /**
+     * tree
+     * ls-tree
+     *
+     * @param $hash
+     * @return
+     */
+    function tree($hash = 'HEAD'){
+        $root = preg_replace('/\.git\/*/', '', FATTY_GIT_DIR);
+        $cmd = 'cd ' . $root . ';' . FATTY_GIT_PATH . " ls-tree " . $hash;
+        $out = $this->_exec($cmd);
+        $tree = array();
+        foreach ($out as $file) {
+            if (preg_match('/^[0-9]+ ([a-z]+) ([0-9a-z]+)\s(.+)/',$file,$matches)) {
+                $tree[] = array('type' => $matches[1],
+                                'hash' => $matches[2],
+                                'name' => $matches[3]);
+            }
+        }
+        return $tree;
     }
 
     /**

@@ -11,8 +11,12 @@
         <?php
           echo $html->meta('icon');
           echo $html->css('/fatty/css/base');
+          echo $html->css('/fatty/css/jquery.treeview');
           echo $javascript->link('/fatty/js/jquery-1.4.2.min');
           echo $javascript->link('/fatty/js/jquery-ui-1.8.custom.min');
+          echo $javascript->link('/fatty/js/jquery.cookie');
+          echo $javascript->link('/fatty/js/jquery.treeview');
+          echo $javascript->link('/fatty/js/jquery.treeview.async');
           echo $javascript->link('/fatty/js/fatty');
           echo $scripts_for_layout;
         ?>
@@ -23,8 +27,12 @@
         <?php
           echo $this->Html->meta('icon');
           echo $this->Html->css('/fatty/css/base');
+          echo $this->Html->css('/fatty/css/jquery.treeview');
           echo $this->Html->script('/fatty/js/jquery-1.4.2.min');
           echo $this->Html->script('/fatty/js/jquery-ui-1.8.custom.min');
+          echo $this->Html->script('/fatty/js/jquery.cookie');
+          echo $this->Html->script('/fatty/js/jquery.treeview');
+          echo $this->Html->script('/fatty/js/jquery.treeview.async');
           echo $this->Html->script('/fatty/js/fatty');
           echo $scripts_for_layout;
         ?>
