@@ -11,6 +11,7 @@ h2. Features
 * `Commit' detail like GitHub ( @git show@ ).
 * `Diff' between hashes ( @git diff@ ).
 * File blame like GitHub ( @git blame@ ).
+* Display repogitory file tree ( @git ls-tree@ ).
 * Display current branch name.
 
 h2. Usage
@@ -34,6 +35,12 @@ h2. Drag and drop diff
 
 !http://github.com/k1LoW/fatty/tree/master%2Fvendors%2Fimg%2Fss_diff.png?raw=true!
 
+h2. Double click file tree
+
+Double click anywhere, display repogitory file tree.
+
+!http://github.com/k1LoW/fatty/tree/master%2Fvendors%2Fimg%2Fss_tree.png?raw=true!
+
 h2. Display current branch name
 
 Add the following code in whichever controller you want to display current branch name like DebugKit toolbar (typically AppController).
@@ -54,4 +61,4 @@ h2. TODO
 * -Support @git diff@ any hash-
 * -Support @git blame@-
 * -Support file commit log ( @git log file@ )-
-* File tree (@git ls-tree@)
+* -File tree (@git ls-tree@)-
