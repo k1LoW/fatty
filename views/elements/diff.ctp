@@ -11,6 +11,7 @@
         <?php foreach ($diff as $part): ?>
         <table>
             <?php foreach ($part as $n => $line): ?>
+            <?php $multi = false; ?>
             <?php if (preg_match('/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@/',$line, $matches)): ?>
             <?php
               $mstart = $matches[1];

@@ -180,12 +180,12 @@ class GitComponent extends Object {
             if (preg_match('/^[ ]{4}(.+)$/',$line,$matches) && !$diff) {
                 $commit['comment'] .= $matches[1] . "\n";
             }
-            if (preg_match('/^diff --git a\/([\w\/.]+)/',$line,$matches) && !$diff) {
+            if (preg_match('/^diff --git a\/([^\s]+)/',$line,$matches) && !$diff) {
                 $diff = true;
                 $file = $matches[1];
                 $commit['diff'][$file] = array();
             }
-            if (preg_match('/^diff --cc ([\w\/.]+)/',$line,$matches) && !$diff) {
+            if (preg_match('/^diff --cc ([^\s]+)/',$line,$matches) && !$diff) {
                 $diff = true;
                 $file = $matches[1];
                 $commit['diff'][$file] = array();
@@ -197,6 +197,7 @@ class GitComponent extends Object {
                 }
 
                 $commit['diff'][$file][$part][] = $line;
+                $diff = false;
             }
         }
         return $commit;
