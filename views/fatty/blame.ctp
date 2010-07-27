@@ -1,6 +1,7 @@
 <div id="blame">
     <div class="title">
         <?php echo $filepath; ?>
+        <?php echo $html->link(__('history', true), array('action' => 'commits', base64_encode($filepath))); ?>
     </div>
     <table>
         <?php $currentHash = ''; ?>

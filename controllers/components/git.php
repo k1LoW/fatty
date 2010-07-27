@@ -168,27 +168,33 @@ class GitComponent extends Object {
                 $commit['hash'] = $hash;
                 $commit['parent'] = $parent;
                 $commit['parent2'] = $parent2;
+                continue;
             }
             if (preg_match('/Author: ([\w]+)/',$line,$matches) && !$author) {
                 $author = true;
                 $commit['Author'] = $matches[1];
+                continue;
             }
             if (preg_match('/Date:[ ]*(.+)$/',$line,$matches) && !$date) {
                 $date = true;
                 $commit['Date'] = $matches[1];
+                continue;
             }
             if (preg_match('/^[ ]{4}(.+)$/',$line,$matches) && !$diff) {
                 $commit['comment'] .= $matches[1] . "\n";
+                continue;
             }
-            if (preg_match('/^diff --git a\/([^\s]+)/',$line,$matches) && !$diff) {
+            if (preg_match('/^diff --git a\/([^\s]+)/',$line,$matches)) {
                 $diff = true;
                 $file = $matches[1];
                 $commit['diff'][$file] = array();
+                continue;
             }
-            if (preg_match('/^diff --cc ([^\s]+)/',$line,$matches) && !$diff) {
+            if (preg_match('/^diff --cc ([^\s]+)/',$line,$matches)) {
                 $diff = true;
                 $file = $matches[1];
                 $commit['diff'][$file] = array();
+                continue;
             }
             if ($diff && $file && !preg_match('/^diff|^index|^\+\+\+|^---/',$line)) {
                 if (preg_match('/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@/',$line)) {
@@ -197,7 +203,6 @@ class GitComponent extends Object {
                 }
 
                 $commit['diff'][$file][$part][] = $line;
-                $diff = false;
             }
         }
         return $commit;
