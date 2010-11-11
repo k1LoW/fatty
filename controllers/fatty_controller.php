@@ -15,7 +15,7 @@ class FattyController extends FattyAppController {
     var $name = 'Fatty';
     var $uses = array();
     var $helpers = array('Html');
-    var $components = array('Fatty.Git');
+    var $components = array('Fatty.Git', 'Fatty.Svn');
 
     /**
      * index
@@ -28,7 +28,6 @@ class FattyController extends FattyAppController {
         $count = $this->Git->count();
         $logs = $this->Git->log($limit, $skip);
         $branch = $this->Git->currentBranch;
-
 
         $prev = ($page > 1) ? $page - 1 : null;
         $next = ($count/$limit < $page) ? null : $page + 1;
@@ -175,5 +174,16 @@ class FattyController extends FattyAppController {
         Configure::write('debug', 0);
         $tree = $this->Git->tree($hash);
         $this->set('tree', $tree);
+    }
+
+    /**
+     * svn
+     *
+     * @param
+     * @return
+     */
+    function svn(){
+        $logs = $this->Svn->log();
+        $this->set(compact('logs'));
     }
   }
