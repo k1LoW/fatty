@@ -1,7 +1,7 @@
 <h2>
     <?php __('Commit History: SVN'); ?>
 </h2>
-<?php if(empty($logs)): ?>
+<?php if(!empty($logs)): ?>
 <?php foreach ($logs as $commit): ?>
 <div id="<?php echo $commit['rev']; ?>" class="commit draggable droppable">
 <div class="info">
