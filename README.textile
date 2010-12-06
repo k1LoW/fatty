@@ -1,7 +1,7 @@
 h1. Fatty: Simple Git repogitory browser plugin for CakePHP.
 
 Git eat Cake!!
-!http://github.com/k1LoW/fatty/raw/master/vendors/img/fatty.png!
+!/k1LoW/fatty/raw/master/vendors/img/fatty.png!
 
 This plugin provide local self git repogitory browser.
 
@@ -27,19 +27,19 @@ Second, add the following code in bootstrap.php.
 
 Then, goto http://yourapp/fatty/ .
 
-!http://github.com/k1LoW/fatty/raw/master/vendors/img/ss_index.png!
+!/k1LoW/fatty/raw/master/vendors/img/ss_index.png!
 
-!http://github.com/k1LoW/fatty/raw/master/vendors/img/ss_commit.png!
+!/k1LoW/fatty/raw/master/vendors/img/ss_commit.png!
 
 h2. Drag and drop diff
 
-!http://github.com/k1LoW/fatty/raw/master/vendors/img/ss_diff.png!
+!/k1LoW/fatty/raw/master/vendors/img/ss_diff.png!
 
 h2. Double click file tree
 
 Double click anywhere, display repogitory file tree.
 
-!http://github.com/k1LoW/fatty/raw/master/vendors/img/ss_tree.png!
+!/k1LoW/fatty/raw/master/vendors/img/ss_tree.png!
 
 h2. Display current branch name
 
@@ -52,7 +52,7 @@ class AppController extends Controller {
 }
 </pre>
 
-!http://github.com/k1LoW/fatty/raw/master/vendors/img/ss_master.png! !http://github.com/k1LoW/fatty/raw/master/vendors/img/ss_branch.png!
+!/k1LoW/fatty/raw/master/vendors/img/ss_master.png! !/k1LoW/fatty/raw/master/vendors/img/ss_branch.png!
 
 h2. TODO
 
