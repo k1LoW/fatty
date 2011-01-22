@@ -22,7 +22,7 @@ class FattyController extends FattyAppController {
      *
      */
     function index($page = 1){
-        $limit = FATTY_LOG_LIMIT;
+        $limit = Configure::read('Fatty.log_limit');
         $skip = $limit * ($page - 1);
 
         $count = $this->Git->count();
@@ -55,7 +55,7 @@ class FattyController extends FattyAppController {
         Configure::write('debug', 0);
 
         $filepath = base64_decode($filepath);
-        $limit = FATTY_LOG_LIMIT;
+        $limit = Configure::read('Fatty.log_limit');
         $skip = $limit * ($page - 1);
 
         $count = $this->Git->count($filepath);
@@ -97,7 +97,7 @@ class FattyController extends FattyAppController {
      */
     function commits($filepath = null, $page = 1){
         $filepath = base64_decode($filepath);
-        $limit = FATTY_LOG_LIMIT;
+        $limit = Configure::read('Fatty.log_limit');
         $skip = $limit * ($page - 1);
 
         $count = $this->Git->count($filepath);

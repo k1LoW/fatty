@@ -10,7 +10,6 @@
    * @since       CakePHP(tm) v 1.2
    * @license     http://www.opensource.org/licenses/mit-license.php The MIT License
    */
-require App::pluginPath('fatty') . 'config' . DS . 'core.php';
 class GitComponent extends Object {
 
     var $settings = array();
@@ -27,6 +26,27 @@ class GitComponent extends Object {
         if (Configure::read('debug') < 2 && empty($this->settings['forceEnable'])) {
             $this->enabled = false;
             return false;
+        }
+        if (defined('FATTY_GIT_PATH')) {
+            Configure::write('Fatty.git_path', FATTY_GIT_PATH);
+        } else {
+            if (!Configure::read('Fatty.git_path')) {
+                Configure::write('Fatty.git_path', '/usr/local/bin/git');
+            }
+        }
+        if (defined('FATTY_GIT_DIR')) {
+            Configure::write('Fatty.git_dir', FATTY_GIT_DIR);
+        } else {
+            if (!Configure::read('Fatty.git_dir')) {
+                Configure::write('Fatty.git_dir', ROOT . DS . '.git' . DS);
+            }
+        }
+        if (defined('FATTY_LOG_LIMIT')) {
+            Configure::write('Fatty.log_limit', FATTY_LOG_LIMIT);
+        } else {
+            if (!Configure::read('Fatty.log_limit')) {
+                Configure::write('Fatty.log_limit', 20);
+            }
         }
     }
 
@@ -58,7 +78,7 @@ class GitComponent extends Object {
      * @return
      */
     function branch(){
-        $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " branch";
+        $cmd = 'GIT_DIR=' . Configure::read('Fatty.git_dir') . " " . Configure::read('Fatty.git_path') . " branch";
         $out = $this->_exec($cmd);
         $this->branches = array();
         foreach ($out as $value) {
@@ -78,10 +98,10 @@ class GitComponent extends Object {
      */
     function count($filepath = null){
         if ($filepath) {
-            $root = preg_replace('/\.git\/*/', '', FATTY_GIT_DIR);
-            $cmd = 'cd ' . $root . ';GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --pretty=oneline " . $root . $filepath . " | wc -l";
+            $root = preg_replace('/\.git\/*/', '', Configure::read('Fatty.git_dir'));
+            $cmd = 'cd ' . $root . ';GIT_DIR=' . Configure::read('Fatty.git_dir') . " " . Configure::read('Fatty.git_path') . " log --pretty=oneline " . $root . $filepath . " | wc -l";
         } else {
-            $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --pretty=oneline | wc -l";
+            $cmd = 'GIT_DIR=' . Configure::read('Fatty.git_dir') . " " . Configure::read('Fatty.git_path') . " log --pretty=oneline | wc -l";
         }
 
         $out = $this->_exec($cmd);
@@ -97,10 +117,10 @@ class GitComponent extends Object {
      */
     function log($limit = 20, $offset = 0, $filepath = null){
         if ($filepath) {
-            $root = preg_replace('/\.git\/*/', '', FATTY_GIT_DIR);
-            $cmd = 'cd ' . $root . ';GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --stat -n " . $limit . " --skip=" . $offset . " --parents " . $root . $filepath;
+            $root = preg_replace('/\.git\/*/', '', Configure::read('Fatty.git_dir'));
+            $cmd = 'cd ' . $root . ';GIT_DIR=' . Configure::read('Fatty.git_dir') . " " . Configure::read('Fatty.git_path') . " log --stat -n " . $limit . " --skip=" . $offset . " --parents " . $root . $filepath;
         } else {
-            $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " log --stat -n " . $limit . " --skip=" . $offset . " --parents";
+            $cmd = 'GIT_DIR=' . Configure::read('Fatty.git_dir') . " " . Configure::read('Fatty.git_path') . " log --stat -n " . $limit . " --skip=" . $offset . " --parents";
         }
 
         $out = $this->_exec($cmd);
@@ -149,7 +169,7 @@ class GitComponent extends Object {
      * @return
      */
     function show($hash){
-        $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " show " . $hash . " --parents";
+        $cmd = 'GIT_DIR=' . Configure::read('Fatty.git_dir') . " " . Configure::read('Fatty.git_path') . " show " . $hash . " --parents";
         $out = $this->_exec($cmd);
         $commit = array();
         $commit['comment'] = '';
@@ -216,7 +236,7 @@ class GitComponent extends Object {
      * @return
      */
     function diff($a = 'HEAD', $b = 'HEAD'){
-        $cmd = 'GIT_DIR=' . FATTY_GIT_DIR . " " . FATTY_GIT_PATH . " diff " . $a . " " . $b;
+        $cmd = 'GIT_DIR=' . Configure::read('Fatty.git_dir') . " " . Configure::read('Fatty.git_path') . " diff " . $a . " " . $b;
         $out = $this->_exec($cmd);
         $commit = array();
         $commit['diff'] = array();
@@ -248,8 +268,8 @@ class GitComponent extends Object {
      * @return
      */
     function blame($filepath){
-        $root = preg_replace('/\.git\/*/', '', FATTY_GIT_DIR);
-        $cmd = 'cd ' . $root . ';' . FATTY_GIT_PATH . " blame -l" . " " . $root . $filepath;
+        $root = preg_replace('/\.git\/*/', '', Configure::read('Fatty.git_dir'));
+        $cmd = 'cd ' . $root . ';' . Configure::read('Fatty.git_path') . " blame -l" . " " . $root . $filepath;
         $out = $this->_exec($cmd);
         //pr($out);
         $blame = array();
@@ -273,8 +293,8 @@ class GitComponent extends Object {
      * @return
      */
     function tree($hash = 'HEAD'){
-        $root = preg_replace('/\.git\/*/', '', FATTY_GIT_DIR);
-        $cmd = 'cd ' . $root . ';' . FATTY_GIT_PATH . " ls-tree " . $hash;
+        $root = preg_replace('/\.git\/*/', '', Configure::read('Fatty.git_dir'));
+        $cmd = 'cd ' . $root . ';' . Configure::read('Fatty.git_path') . " ls-tree " . $hash;
         $out = $this->_exec($cmd);
         $tree = array();
         foreach ($out as $file) {

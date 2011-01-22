@@ -10,7 +10,6 @@
    * @since       CakePHP(tm) v 1.2
    * @license     http://www.opensource.org/licenses/mit-license.php The MIT License
    */
-require App::pluginPath('fatty') . 'config' . DS . 'core.php';
 class SvnComponent extends Object {
 
     var $settings = array();
@@ -22,6 +21,13 @@ class SvnComponent extends Object {
      *
      */
     function initialize(&$controller, $settings){
+        if (defined('FATTY_SVN_PATH')) {
+            Configure::write('Fatty.svn_path', FATTY_SVN_PATH);
+        } else {
+            if (!Configure::read('Fatty.svn_path')) {
+                Configure::write('Fatty.svn_path', '/usr/bin/svn');
+            }
+        }
     }
 
     /**
@@ -47,7 +53,7 @@ class SvnComponent extends Object {
      */
     function log($limit = 20, $offset = 0, $filepath = null){
         $root = ROOT;
-        $cmd = 'cd ' . $root . ';' . FATTY_SVN_PATH . " log -r HEAD:1 --limit " . $limit . ' ' . $root . ' 2>&1';
+        $cmd = 'cd ' . $root . ';' . Configure::read('Fatty.svn_path') . " log -r HEAD:1 --limit " . $limit . ' ' . $root . ' 2>&1';
         putenv("HOME=/var/www/html");
         putenv("LANG=ja_JP.UTF-8");
         $out = $this->_exec($cmd);
