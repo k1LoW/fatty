@@ -25,6 +25,15 @@ Second, add the following code in bootstrap.php.
     define('FATTY_GIT_DIR', ROOT . DS . '.git' . DS); // local .git directory path
 </pre>
 
+or
+
+<pre>
+<?php
+    Configure::write('Fatty.git_path', '/usr/local/bin/git'); // git path
+    Configure::write('Fatty.git_dir', ROOT . DS . '.git' . DS); // local .git directory path
+</pre>
+
+
 Then, goto http://yourapp/fatty/ .
 
 !/k1LoW/fatty/raw/master/vendors/img/ss_index.png!
