@@ -18,6 +18,12 @@
               $pstart = $matches[3];
               $multi = false;
             ?>
+            <?php elseif (preg_match('/^(old|new) mode/',$line, $matches)): ?>
+            <?php
+              $mstart = 0;
+              $pstart = 0;
+              $multi = false;
+            ?>
             <?php endif; ?>
             <?php if (preg_match('/^@@@ -(\d+),?(\d*) [\+-](\d+),?(\d*) ?[\+-]?(\d*),?(\d*) @@/',$line, $matches)): ?>
             <?php
