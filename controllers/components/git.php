@@ -31,7 +31,7 @@ class GitComponent extends Object {
             Configure::write('Fatty.git_path', FATTY_GIT_PATH);
         } else {
             if (!Configure::read('Fatty.git_path')) {
-                Configure::write('Fatty.git_path', '/usr/local/bin/git');
+                Configure::write('Fatty.git_path', '/usr/bin/git');
             }
         }
         if (defined('FATTY_GIT_DIR')) {

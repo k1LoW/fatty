@@ -11,7 +11,6 @@
     $("#repogitory").treeview({
     url: fattyBase + 'ls_tree/',
     });
-
     $("span.file").live('click', function () {
     var $self = $(this);
     var filename = $self.text();

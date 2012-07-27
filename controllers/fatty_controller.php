@@ -155,6 +155,7 @@ class FattyController extends FattyAppController {
      * @return
      */
     function tree($hash = 'HEAD'){
+        Configure::write('debug', 0);
         $branch = $this->Git->currentBranch;
         $this->set(array(
                          'hash' => $hash,
